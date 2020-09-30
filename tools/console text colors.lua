@@ -1,6 +1,7 @@
 --[[
     Jericho's system.print() extension -- https://github.com/Jericho1060
     Display content in lua chat channel with colors
+    Source : https://github.com/Jericho1060/DualUniverse/blob/master/tools/console%20text%20colors.lua
 ]]
 system.printColor = function(message, color) system.print('<span style="color:' .. color .. ';">' .. message .. '</span>') end
 system.printPrimary = function(message) system.printColor(message, "#007bff") end
