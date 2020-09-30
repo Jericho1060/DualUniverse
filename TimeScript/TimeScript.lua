@@ -1,3 +1,9 @@
+[[--
+    Jericho's time script -- https://github.com/Jericho1060
+    Display IRL time in game
+    https://github.com/Jericho1060/DualUniverse/tree/master/TimeScript
+]]--
+
 summer_time = true --export
 
 function getTimeTable(time)
@@ -11,3 +17,14 @@ function getTimeString(time)
     local timeTable = getTimeTable(time)
     return string.format("%02d:%02d:%02d",timeTable[1],timeTable[2],timeTable[3])
 end
+
+
+--[[
+    USAGE
+    Copy the full script in Library > Start
+    
+    local timeTable = getTimeTable(system.getTime()) -- return a table with 3 values : {hour, minutes, seconds}
+    local timeString = getTimeString(system.getTime()) -- return a formated string : "HH:mm:ss"
+    
+    you can add a timer every seconds to display the time
+]]--
