@@ -6,9 +6,9 @@ end
 
 -- return an ingredient fron it's name
 function getIngredient(name)
-    ingredient = Ingredients[name]
+    local ingredient = Ingredients[cleanName(name)]
     if not ingredient then
-        system.print('Error [Ingredient not found]: '..name)
+        --system.print('Error [Ingredient not found]: '..name)
         ingredient = Ingredients['unknown']
     end
     return ingredient
