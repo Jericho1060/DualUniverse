@@ -1,4 +1,3 @@
-
 --[[
     Jericho's time script -- https://github.com/Jericho1060
     Display IRL date and time in game
@@ -15,10 +14,14 @@ function DUCurrentDateTime()
     local secondsInHour = secondsInMinute * 60
     local secondsInDay = secondsInHour * 24
     local secondsInYear = secondsInDay * 365
-    local monthsWith30 = {4, 6, 9, 11}
-    local monthsWith31 = {1, 3, 5, 7, 8, 10, 12}
+    local weekDaysNames = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
+    local weekDaysShortNames = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"}
+    local monthNames = {"January", "Febuary", "March", "April", "May", "June", "July", "August", "Septrember", "October", "Novermber", "December"}
+    local monthShortNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}
     if summer_time then time = time + 1 end
     time = time - seconds_to_2018
+    local weekDayIndex = math.floor(time/secondsInDay)%7
+    if weekDayIndex == 0 then weekDayIndex = 7 end
     local year = 2018
     local month = 1
     local day = 1
@@ -38,57 +41,46 @@ function DUCurrentDateTime()
         end
     end
     local daysFromYearStart = math.floor(time/secondsInDay)
-    --febuary
     if daysFromYearStart >= 31 then
         month = 2
         daysFromYearStart = daysFromYearStart - 31
     end
-    --march
     if daysFromYearStart >= daysInFebuary then
         month = 3
         daysFromYearStart = daysFromYearStart - daysInFebuary
     end
-    --april
     if daysFromYearStart >= 31 then
         month = 4
         daysFromYearStart = daysFromYearStart - 31
     end
-    --may
     if daysFromYearStart >= 30 then
         month = 5
         daysFromYearStart = daysFromYearStart - 30
     end
-    --juin
     if daysFromYearStart >= 31 then
         month = 6
         daysFromYearStart = daysFromYearStart - 31
     end
-    --july
     if daysFromYearStart >= 30 then
         month = 7
         daysFromYearStart = daysFromYearStart - 30
     end
-    --august
     if daysFromYearStart >= 31 then
         month = 8
         daysFromYearStart = daysFromYearStart - 31
     end
-    --september
     if daysFromYearStart >= 31 then
         month = 9
         daysFromYearStart = daysFromYearStart - 31
     end
-    --october
     if daysFromYearStart >= 30 then
         month = 10
         daysFromYearStart = daysFromYearStart - 30
     end
-    --november
     if daysFromYearStart >= 31 then
         month = 11
         daysFromYearStart = daysFromYearStart - 31
     end
-    --december
     if daysFromYearStart >= 30 then
         month = 12
         daysFromYearStart = daysFromYearStart - 30
@@ -98,5 +90,10 @@ function DUCurrentDateTime()
     local h = math.floor(time/secondsInHour)%24
     local m = math.floor(time%secondsInHour/60)
     local s = math.floor(time%60)
-    return year, month, day, h, m, s
+    return year, month, day, h, m, s, weekDayIndex, weekDaysNames[weekDayIndex], weekDaysShortNames[weekDayIndex], monthNames[month], monthShortNames[month]
 end
+
+--[[
+    local year, month, day, h, m, s, weekDayIndex, weekDayName, weekDayShortName, monthName, monthShortName = DUCurrentDateTime()
+    system.print(string.format("%02d/%02d/%04d %02d:%02d:%02d",day,month,year,hour,minute,second))
+]]
