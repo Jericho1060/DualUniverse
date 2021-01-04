@@ -94,6 +94,6 @@ function DUCurrentDateTime()
 end
 
 --[[
-    local year, month, day, h, m, s, weekDayIndex, weekDayName, weekDayShortName, monthName, monthShortName = DUCurrentDateTime()
+    local year, month, day, hour, minute, second, weekDayIndex, weekDayName, weekDayShortName, monthName, monthShortName = DUCurrentDateTime()
     system.print(string.format("%02d/%02d/%04d %02d:%02d:%02d",day,month,year,hour,minute,second))
 ]]
