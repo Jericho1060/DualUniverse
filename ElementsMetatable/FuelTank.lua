@@ -1,7 +1,7 @@
 --[[
     Fuel Tanks Metatable By Jericho
     Version: 1.0.0
-    Source available at: 
+    Source available at: https://github.com/Jericho1060/DualUniverse/blob/master/ElementsMetatable/FuelTank.lua
 ]]
 FuelTank = {
     __index = {
