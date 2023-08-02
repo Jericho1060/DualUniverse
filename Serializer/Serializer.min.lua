@@ -1,1 +1,6 @@
+--[[
+    Lua Serializer by Jericho
+    Version: 1.0.0
+    Source available at: https://github.com/Jericho1060/DualUniverse/blob/master/Serializer/Serializer.lua
+]]
 Serializer={__index={stringify=function(self,a)if type(a)=='number'then return self:stringifyNumber(a)elseif type(a)=='string'then return self:stringifyString(a)elseif type(a)=='table'then return self:stringifyTable(a)elseif type(a)=='boolean'then return self:stringifyBoolean(a)end;return nil end,parse=function(self,b)return load("return "..b)()end,stringifyTableKey=function(self,c)if type(c)=='number'then return'['..self:stringifyNumber(c)..']'end;return c end,stringifyNumber=function(self,d)return tostring(d)end,stringifyString=function(self,b)return string.format('%q',b):gsub('\\\n','\n'):gsub('\\\r','\r'):gsub('\\\t','\t')end,stringifyTable=function(self,e)local b='{'local f=1;local g=self:tableLength(e)for h,i in pairs(e)do b=b..self:stringifyTableKey(h)..'='..self:stringify(i)if f<g then b=b..','end;f=f+1 end;return b..'}'end,stringifyBoolean=function(self,j)return tostring(j)end,tableLength=function(self,e)local k=0;for l in pairs(e)do k=k+1 end;return k end}}

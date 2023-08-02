@@ -1,3 +1,8 @@
+--[[
+    Lua Serializer by Jericho
+    Version: 1.0.0
+    Source available at: https://github.com/Jericho1060/DualUniverse/blob/master/Serializer/Serializer.lua
+]]
 Serializer = {
     __index = {
         stringify = function(self, data)
@@ -48,30 +53,3 @@ Serializer = {
         end
     }
 }
-
-local s = setmetatable({}, Serializer)
-local test = { "aaa", a="bbb", b="cccc"}
-print(s:tableLength(test))
-
-local element = {'hello "-" world', 1234, 1234.5678, { "aaa", a="bbb"}}
-
-local str = s:stringify(element)
-
-print(str)
-
-local obj = s:parse(str)
-
-
-dumpTable = function (t, prefix)
-    if prefix == nil then prefix = "" end
-    for k, v in pairs(t) do
-        if type(v) == 'table' then
-            print(k .. ' is a table')
-            dumpTable(v, '\t')
-        else
-            print(prefix .. k ..' = ' .. v)
-        end
-    end
-end
-
-dumpTable(obj)
