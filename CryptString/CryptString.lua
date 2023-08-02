@@ -47,3 +47,12 @@ CryptString = {
         end
     }
 }
+
+--[[
+    USAGE:
+    local c = setmetatable({}, CryptString)
+    local key = "myKey" --the pass key used to crypt and decrytp data
+    local data = "myData"
+    local encryptedData = c:crypt(data, key)
+    local decryptedData = c:crypt(encryptedData, key)
+]]
